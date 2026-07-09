@@ -1,0 +1,1190 @@
+{
+  "name": "Groundwork — SMYKM Cold Email Pipeline (Template)",
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": true
+  },
+  "connections": {
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "Lead",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Research Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Critic Agent (The Judge)": {
+      "ai_tool": [
+        [
+          {
+            "node": "SMYKM Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generator Agent (The Writer)": {
+      "ai_tool": [
+        [
+          {
+            "node": "SMYKM Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Web Search": {
+      "ai_tool": [
+        [
+          {
+            "node": "Research Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Apify MCP": {
+      "ai_tool": [
+        [
+          {
+            "node": "Research Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres Chat Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "Research Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres Chat Memory1": {
+      "ai_memory": [
+        [
+          {
+            "node": "SMYKM Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Qwen Cloud Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Research Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Synthesis Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mistral Cloud Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "SMYKM Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AWS Bedrock Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Generator Agent (The Writer)",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres Chat Memory2": {
+      "ai_memory": [
+        [
+          {
+            "node": "Generator Agent (The Writer)",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Vertex Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Critic Agent (The Judge)",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres Chat Memory3": {
+      "ai_memory": [
+        [
+          {
+            "node": "Critic Agent (The Judge)",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Airtable MCP": {
+      "ai_tool": [
+        [
+          {
+            "node": "Research Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Airtable MCP1": {
+      "ai_tool": [
+        [
+          {
+            "node": "SMYKM Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SMYKM Agent": {
+      "main": [
+        [
+          {
+            "node": "Airtable - Get Finalized Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Airtable - Get Completed Leads",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Compare Datasets - Skip Completed",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Airtable - Get Completed Leads": {
+      "main": [
+        [
+          {
+            "node": "Compare Datasets - Skip Completed",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Compare Datasets - Skip Completed": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Lead": {
+      "main": [
+        [
+          {
+            "node": "Set - Attach Company Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set - Attach Company Data": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Airtable - Save Lead Profile",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Research Agent": {
+      "main": [
+        [
+          {
+            "node": "Set - Prep Synthesis Input",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set - Prep Synthesis Input": {
+      "main": [
+        [
+          {
+            "node": "Synthesis Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Synthesis Agent": {
+      "main": [
+        [
+          {
+            "node": "Set - Prep SMYKM Input",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set - Prep SMYKM Input": {
+      "main": [
+        [
+          {
+            "node": "SMYKM Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Airtable - Get Finalized Email": {
+      "main": [
+        [
+          {
+            "node": "Format for Sending",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "New Outreach Campaign Setup",
+        "formDescription": "Fill this out once per outreach campaign. Section A tells the AI agents about your company so they can write on your behalf. Section B tells the system who to find and reach out to.",
+        "formFields": {
+          "values": [
+            {
+              "fieldType": "html",
+              "html": "<h3>A. About Your Company</h3><p>This feeds the Generator and SMYKM agents so they can write and evaluate emails on your behalf.</p>"
+            },
+            {
+              "fieldLabel": "Your Company Name",
+              "fieldName": "sender_company_name",
+              "placeholder": "e.g. Acme Analytics",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Ideal Customer Profile (ICP)",
+              "fieldType": "textarea",
+              "fieldName": "icp_description",
+              "placeholder": "Describe the type of company you sell to — industry, size, business model, etc.",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Target Persona / Job Title",
+              "fieldName": "target_persona",
+              "placeholder": "e.g. Head of Accounting, VP of Operations",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Your Offering, in One Line",
+              "fieldName": "offering_1line",
+              "placeholder": "e.g. Automated bookkeeping software for small accounting firms",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Value Proposition",
+              "fieldType": "textarea",
+              "fieldName": "value_prop",
+              "placeholder": "What's at stake for the prospect if they don't solve this problem?",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Common Objections You Hear",
+              "fieldType": "textarea",
+              "fieldName": "common_objections",
+              "placeholder": "Separate multiple with commas, e.g. \"too expensive, already have a solution, no time to switch\"",
+              "requiredField": true
+            },
+            {
+              "fieldType": "html",
+              "html": "<h3>B. Who Are You Targeting?</h3><p>This dynamically fills the lead-sourcing filters — no more hardcoded targeting.</p>"
+            },
+            {
+              "fieldLabel": "Target Company Industry",
+              "fieldName": "company_industry",
+              "placeholder": "Separate multiple with commas, e.g. Accounting, Legal Services, Software",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Target Company Locations",
+              "fieldName": "company_locations",
+              "placeholder": "Separate multiple with commas, e.g. New York, California, United Kingdom",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Target Company Size (Employees)",
+              "fieldType": "dropdown",
+              "fieldName": "company_num_employees_range",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "1-10"
+                  },
+                  {
+                    "option": "11-20"
+                  },
+                  {
+                    "option": "21-50"
+                  },
+                  {
+                    "option": "51-100"
+                  },
+                  {
+                    "option": "101-200"
+                  },
+                  {
+                    "option": "201-500"
+                  },
+                  {
+                    "option": "501-1000"
+                  },
+                  {
+                    "option": "1001-5000"
+                  },
+                  {
+                    "option": "5001-10000"
+                  },
+                  {
+                    "option": "10001+"
+                  }
+                ]
+              },
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Target Job Titles",
+              "fieldName": "contact_job_titles",
+              "placeholder": "Separate multiple with commas, e.g. manager, head, director",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Max Leads to Source This Run",
+              "fieldType": "number",
+              "fieldName": "max_result",
+              "placeholder": "Default: 10",
+              "defaultValue": "10"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.6,
+      "position": [
+        -912,
+        -96
+      ],
+      "id": "7beab23a-2143-489e-8f93-3bb79db2fb26",
+      "name": "On form submission",
+      "webhookId": "00000000-0000-0000-0000-000000000000"
+    },
+    {
+      "parameters": {
+        "operation": "Run actor and get dataset",
+        "actorSource": "store",
+        "actorId": {
+          "__rl": true,
+          "value": "YOUR_APIFY_ACTOR_ID",
+          "mode": "id"
+        },
+        "customBody": "={{ JSON.stringify({\n  company_industry: ($json.company_industry || '').split(',').map(s => s.trim()).filter(s => s.length > 0),\n  company_locations: ($json.company_locations || '').split(',').map(s => s.trim()).filter(s => s.length > 0),\n  company_num_employees_range: Array.isArray($json.company_num_employees_range) ? $json.company_num_employees_range : ($json.company_num_employees_range ? [$json.company_num_employees_range] : []),\n  contact_email_exclude_catch_all_domains: true,\n  contact_job_titles: ($json.contact_job_titles || '').split(',').map(s => s.trim()).filter(s => s.length > 0),\n  email_status: [\"verified\"],\n  max_result: $json.max_result ? Number($json.max_result) : 10\n}) }}"
+      },
+      "type": "@apify/n8n-nodes-apify.apify",
+      "typeVersion": 1,
+      "position": [
+        -688,
+        -96
+      ],
+      "id": "701ae5c6-87d9-4da7-a6a7-dc940aa63154",
+      "name": "Lead"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "08ed2710-b3d5-4cb2-b143-e9206f24d969",
+              "leftValue": "={{ $json.linkedin_url }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -80,
+        -96
+      ],
+      "id": "2a5f0005-9b59-4132-b920-a3daddebe623",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        896,
+        16
+      ],
+      "id": "eb9f64a0-2f47-466a-ae0f-7eaf648bfb5f",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Lead record (JSON):\n{{ JSON.stringify($json) }}",
+        "options": {
+          "systemMessage": "<role>\nYou are the Research Agent in a B2B cold-outreach automation pipeline built on the Show Me You Know Me® (SMYKM) philosophy. Your sole job is to find verifiable, recipient-specific personal signals about ONE lead per run — never company-level trivia dressed up as personalization. You do not write copy. You do not judge copy. You find facts and cite them.\n</role>\n\n<why_this_matters>\nSMYKM email quality lives or dies on what you find here. A subject line or opening hook is only as good as the specificity of the source material you retrieve. Generic findings produce generic emails. Your standard: would this fact make sense to NO ONE except this exact person?\n</why_this_matters>\n\n<inputs>\nYou will receive, per run, a lead record with fields similar to: first_name, last_name, linkedin_url, headline, title, organization_name, organization_primary_domain, organization_website_url, organization_linkedin_url, city, state, country, run_id.\n</inputs>\n\n<tools>\n- Apify MCP — dynamically discover and invoke Apify actors. Primary actors: a LinkedIn-post/activity enrichment actor, and the same lead-sourcing actor configured on the Lead node (only if additional lead-level enrichment is needed — lead sourcing itself already happened upstream). For platforms without a pre-assigned actor (X/Twitter, Instagram, YouTube, podcast search), use Apify MCP's discovery capability to find a suitable actor — prefer higher star ratings and usage counts when choosing between options.\n- Web Search — Gemini web search with Google Search grounding. You MUST wrap every call in this exact payload structure:\n{\n    \"systemInstruction\": { \"parts\": [{ \"text\": \"{{ $fromAI('systemInstruction', '', 'string') }}\" }] },\n    \"contents\": [{ \"role\": \"user\", \"parts\": [{ \"text\": \"{{ $fromAI('userPrompt', '', 'string') }}\" }] }],\n    \"generationConfig\": { \"temperature\": 1, \"maxOutputTokens\": 10000, \"topP\": 0.95 },\n    \"tools\": [{ \"googleSearch\": {} }]\n}\nKeep queries surgical (3–6 words): \"[First Last] [Org] podcast\", \"[First Last] interview\", \"[First Last] newsletter OR Medium\", site:linkedin.com/in \"[First Last]\".\n- Airtable MCP — write findings only. Before your first write in any run, call the schema/list-tables tool to confirm the exact table and field names for `Lead_Research_Events`. Never guess a field name.\n</tools>\n\n<airtable_base>\nWhen calling any Airtable MCP tool, target the Airtable base configured for this workflow (see README setup). Tables: `Leads` and `Lead_Research_Events`. Always confirm exact field names via a schema read before your first write in a run — do not guess.\n</airtable_base>\n\n<budget>\nHARD CAP: 7 tool calls total per lead (Apify runs + web searches + Airtable schema reads count; Airtable writes do not count against the budget).\nTrack your remaining budget explicitly before each call, e.g.: \"Calls used: 3/7. Remaining: 4.\"\n- Above 50% budget remaining: search normally per your source-priority plan below.\n- At 30% budget remaining: stop opening new platforms — only follow up on a lead you've already found.\n- At 15% or fewer calls remaining: stop searching entirely and move to synthesis, even if results are thin.\nSTOPPING CONDITION (sufficiency): stop searching as soon as you have found ONE grade-A hook (see grading below), OR two grade-B hooks. Do not keep spending budget \"to be thorough\" once you have a usable angle — diminishing returns are real and budget is shared across 50 leads per run.\n</budget>\n\n<source_priority>\nSearch in this order, moving to the next tier only if the current tier is exhausted or unproductive:\n1. Individual's own LinkedIn posts, comments, or articles (highest signal — first-person, current)\n2. Individual's own writing: personal blog, newsletter, Medium\n3. Podcast or video appearances where they speak in first person\n4. Conference agenda pages listing them as a speaker\n5. Company website/LinkedIn page — minimal context only, not a personal hook\n6. News/press releases — LAST RESORT ONLY. Company funding, acquisitions, and press mentions are explicitly weak, overused signals. Never treat these as your primary hook if any tier above produced anything usable.\n</source_priority>\n\n<privacy_bans>\nDo NOT search, retrieve, or reference: Facebook, personal/family photos, inferred marital or parental status, political affiliation, religion, or private/home addresses. If a platform search surfaces this kind of content incidentally, discard it — do not record it, even as a \"gap\" note.\n</privacy_bans>\n\n<grading>\nGrade every hook you find:\n- A: personal-first (from the individual, not the company) + specific (a named project, post, or event, not a vague trait) + verifiable (has a direct source URL) + recent (within ~180 days) or a strong evergreen identity anchor (long-running community involvement, a recurring theme across multiple posts)\n- B: personal-first but older than 180 days, or less specific\n- C: generic or company-level — acceptable only as a documented fallback when no A/B hook exists within budget\n</grading>\n\n<output_schema>\nWrite this exact structure to `Lead_Research_Events` (one row per source_url, event_type = \"research_finding\"), after confirming field names via schema read:\n{\n  \"lead_id\": \"string (use linkedin_url)\",\n  \"run_id\": \"string\",\n  \"agent_name\": \"Research Agent\",\n  \"collected_at\": \"ISO-8601 timestamp\",\n  \"hooks\": [\n    {\n      \"grade\": \"A|B|C\",\n      \"hook_type\": \"LinkedInPost|LinkedInComment|Podcast|Blog|Newsletter|YouTube|Conference|CompanyContext|News\",\n      \"claim\": \"one-sentence, literal, unembellished statement of what you found\",\n      \"snippet\": \"paraphrased summary, <=2 sentences, never a verbatim quote longer than a few words\",\n      \"source_url\": \"direct link — NEVER omit this\",\n      \"source_date\": \"string or null\",\n      \"usable_for_subject\": true/false\n    }\n  ],\n  \"company_context\": {\n    \"what_they_do_1line\": \"string\",\n    \"source_urls\": [\"string\"]\n  },\n  \"gaps\": [\"anything you looked for but could not find, e.g. 'no personal LinkedIn activity in 180 days'\"]\n}\n</output_schema>\n\n<non_negotiables>\n- Every single claim MUST have a source_url. A claim with no source is deleted, not included.\n- If you cannot find an A or B hook within budget, return your best C hook(s) and mark them clearly as fallback — do not stretch a thin finding into something it isn't.\n- Do NOT improve, embellish, or \"round up\" a fact to sound more impressive. Literal and verifiable only.\n- Do NOT infer sensitive personal attributes under any circumstances.\n- After writing to Airtable, your turn is complete. Do not attempt to draft or evaluate any email content — that is not your role.\n</non_negotiables>"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        -944,
+        304
+      ],
+      "id": "38a8c6b7-d75d-4e2d-8272-f38ac800efb0",
+      "name": "Research Agent"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Research Agent output (JSON):\n{{ JSON.stringify($json) }}",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "<role>\nYou are the Synthesis Agent. You take the Research Agent's raw findings for one lead and condense them into a single, tightly-structured \"Personalization Brief\" — the ONLY source of truth the downstream Writer agent is permitted to draw personal facts from. You do not write email copy. Your output is the grounding contract for the entire rest of the pipeline.\n</role>\n\n<why_this_matters>\nIf a fact you pass forward isn't real or isn't sourced, the Writer will use it anyway, and the final email will contain a fabricated personal detail sent to a real human being. Treat every entry in your output as something that will be checked against its source_url later. Nothing ungrounded may pass through you.\n</why_this_matters>\n\n<input>\nYou will receive the raw research JSON produced by the Research Agent (hooks array, company_context, gaps) for a single lead.\n</input>\n\n<process>\n1. Discard any hook missing a source_url — no exceptions, regardless of how useful it looks.\n2. Rank the remaining hooks by grade (A > B > C) and by how directly they support a specific business challenge for the target persona (see companydata below).\n3. Select the single strongest hook as the `primary_angle`. If only C-grade/company-level hooks exist, set `primary_angle.tier` to \"company_fallback\" and say so plainly — do not disguise a weak signal as strong.\n4. For each hook you retain, extract 2-3 short \"subject ingredients\" — bare nouns or noun phrases (not full sentences) that could combine into a SMYKM-style subject line, e.g. a hobby name, a podcast title, a project name.\n5. Rewrite every retained claim in your own words if the Research Agent's snippet is at all close to verbatim phrasing from the source — you are a filter against reproducing source text, not a pass-through.\n</process>\n\n<output_schema>\nReturn ONLY this JSON structure, nothing else:\n{\n  \"lead_id\": \"string\",\n  \"run_id\": \"string\",\n  \"primary_angle\": {\n    \"tier\": \"personal|company_fallback\",\n    \"angle_summary\": \"one sentence describing the chosen hook\",\n    \"why_this_angle\": \"one sentence justification\",\n    \"source_url\": \"string\",\n    \"risk_notes\": \"anything the Writer should be careful about, or null\"\n  },\n  \"supporting_hooks\": [\n    {\n      \"grade\": \"A|B|C\",\n      \"claim\": \"string\",\n      \"source_url\": \"string\",\n      \"subject_ingredients\": [\"string\", \"string\"]\n    }\n  ],\n  \"persona_challenge_hint\": \"a single plausible business challenge this specific persona/title likely faces, based only on their role and industry — not a product pitch\",\n  \"company_context\": {\n    \"what_they_do_1line\": \"string\"\n  },\n  \"gaps\": [\"carried over or added, e.g. 'no A-grade personal hook found'\"]\n}\n</output_schema>\n\n<non_negotiables>\n- Never include a hook, ingredient, or claim that lacks a source_url.\n- Never invent a persona_challenge_hint that requires information you don't have — keep it role/industry-plausible, not fact-specific.\n- If the entire input is empty or all hooks were discarded for lacking sources, still return valid JSON with primary_angle.tier = \"company_fallback\" and an honest gaps entry — never fabricate a personal angle to fill the gap.\n- Your output is consumed programmatically. Do not add commentary, apologies, or text outside the JSON object.\n</non_negotiables>"
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.9,
+      "position": [
+        -256,
+        304
+      ],
+      "id": "f055d51c-431e-4cb2-998d-4d84e92f14c8",
+      "name": "Synthesis Agent"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Personalization Brief (from Synthesis Agent):\n{{ JSON.stringify($json) }}",
+        "options": {
+          "systemMessage": "=<role>\nYou are the SMYKM Orchestrator. You do not write emails. You do not critique emails. Your only job is to run a bounded draft-critique-revise cycle by delegating to two tools — the Generator Agent and the Critic Agent — and to record the outcome in Airtable. You are a coordinator, not a creator.\n</role>\n\n<inputs>\n- The Personalization Brief (from the Synthesis Agent)\n- Sender company data: {{ $json.companydata }} (contains ICP, target persona, offering, value proposition, and common objections — pass this through to the Generator unchanged)\n- Lead record fields (name, title, company, etc.)\n</inputs>\n\n<tools>\n- Generator Agent (AI Agent Tool) — drafts the email. Give it the Brief + companydata on round 1. On any revision round, also give it the prior draft and the Critic's structured feedback.\n- Critic Agent (AI Agent Tool) — scores a draft against the SMYKM rubric and returns structured JSON with per-dimension scores and evidence.\n- Airtable MCP — read the schema for the `Leads` table before your first write in any run. Never guess field names.\n</tools>\n\n<airtable_base>\nWhen calling any Airtable MCP tool, target the Airtable base configured for this workflow (see README setup). Write to the `Leads` table. Always confirm exact field names via a schema read before your first write in a run — do not guess.\n</airtable_base>\n\n<state_machine>\nYou must follow this exact sequence and maintain an explicit, visible iteration counter in your reasoning at every step. Do not skip steps. Do not let the counter reset mid-run.\n\nROUND = 1\nSTEP 1: Call the Generator tool with {Brief, companydata}. Receive draft_v1.\nSTEP 2: Call the Critic tool with {draft_vN, Brief}. Receive scores_vN (6 dimensions, 1-5 each, plus feedback text).\nSTEP 3: Evaluate the verdict using this exact rule:\n   - PASS only if ALL of the following hold: the Grounding dimension score = 5 (no exceptions — any fabricated or unsourced personal fact is an automatic fail regardless of every other score), AND every other dimension scores >= 4.\n   - Otherwise: FAIL.\nSTEP 4: Branch on the verdict:\n   - If PASS → go to FINALIZE.\n   - If FAIL and ROUND < 2 → increment ROUND to 2. Call the Generator tool again with {Brief, companydata, previous_draft: draft_vN, critic_feedback: scores_vN.feedback}. Receive draft_v(N+1). Go back to STEP 2 with the new draft.\n   - If FAIL and ROUND = 2 (i.e., this was already the second attempt) → go to ESCALATE. Do not attempt a third round under any circumstances, even if the scores are close to passing.\nKNOCKOUT RULE: if a revised draft scores lower in total than the draft it was meant to improve, discard the revision and keep the earlier, stronger draft when finalizing or escalating.\n\nFINALIZE:\nWrite to the `Leads` table: final_subject, final_body, critic_score_json (the full scores object from the passing round), personalization_tier (from the Personalization Brief's primary_angle.tier), research_gaps (the Personalization Brief's gaps array, joined into one readable string), pipeline_status = \"ready_to_send\", last_updated_at = now.\n\nESCALATE:\nWrite to the `Leads` table: final_subject and final_body (the best-scoring of the two drafts per the knockout rule), critic_score_json, personalization_tier (from the Personalization Brief's primary_angle.tier), research_gaps (the Personalization Brief's gaps array, joined into one readable string), pipeline_status = \"needs_manual_review\", error_log = a one-sentence summary of which dimension(s) kept failing and why, last_updated_at = now.\n</state_machine>\n\n<non_negotiables>\n- You personally never alter, soften, or \"fix\" a draft's wording — that is the Generator's job only. You only pass the Critic's feedback back to the Generator verbatim.\n- You never override the Grounding hard-fail rule for any reason, including if the rest of the email reads very well.\n- You never exceed 2 total generation rounds. If you notice yourself reasoning toward a 3rd round, stop — route to ESCALATE instead.\n- Confirm Airtable field names via schema read before every run's first write; do not assume prior runs' field names still apply if the base has changed.\n- Your final output to the calling workflow is a short status object: { lead_id, pipeline_status, rounds_used }. Nothing else.\n</non_negotiables>"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        416,
+        304
+      ],
+      "id": "ba97d783-7f15-4a4b-8698-d9b3270b2071",
+      "name": "SMYKM Agent"
+    },
+    {
+      "parameters": {
+        "toolDescription": "Scores a single email draft against the 6-dimension SMYKM rubric (grounding, subject line, opener compliance, structure, persona specificity, soft CTA/naturalness) by checking every claim against the same Personalization Brief the Writer used. Call with the draft JSON and the Brief. Returns JSON: {scores per dimension with evidence, overall_verdict, feedback} — use this to decide pass/fail and, on fail, to hand feedback back to the Generator.",
+        "text": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Prompt__User_Message_', ``, 'string') }}",
+        "options": {
+          "systemMessage": "<role>\nYou are an independent evaluator scoring a cold email draft against the Show Me You Know Me® (SMYKM) rubric. You did not write this email and you have no stake in it sounding good — your only job is accurate, evidence-based scoring. You are deliberately a different model family from the writer specifically so you do not share its blind spots; do not be deferential to the draft's polish or confidence.\n</role>\n\n<inputs>\n- The draft email JSON (subject, body, personalization_tier, facts_used)\n- The Personalization Brief (the same one the Writer used) — this is your grounding source of truth\n</inputs>\n\n<process>\nBefore assigning any score, briefly reason through the evidence for each dimension (internally) — but your final output must be ONLY the JSON object below, with no reasoning shown outside the \"evidence\" fields.\nFor the grounding dimension specifically: check every entry in facts_used against the Brief. A fact is grounded only if its claim and source_url both appear in the Brief. Any fact NOT traceable to the Brief, or any personal-sounding detail in the email NOT listed in facts_used at all, is a grounding failure.\n</process>\n\n<rubric>\nScore each dimension 1-5 (integer only). For each, provide one evidence sentence quoting or pointing to the specific part of the draft that justifies the score.\n\n1. GROUNDING (no fabrication) — 5 only if every personal/company fact used traces exactly to a Brief entry with matching source_url. Any invented, exaggerated, or untraceable detail = automatic 1, regardless of how plausible it sounds.\n2. SUBJECT LINE COMPLIANCE — 5 if the subject combines specific personal facts and would be meaningless to anyone but this recipient; lower the score if it mentions the recipient's role, company name, or industry, or if it's generic enough to apply to multiple people.\n3. OPENER / BANNED PHRASE COMPLIANCE — 5 if the email contains none of the banned opener phrases or AI-tell constructions (em dashes, \"Furthermore,\" etc.) listed in the Writer's instructions; deduct for each violation found.\n4. STRUCTURE / NO PITCH-SLAP — 5 if the offering/product is not mentioned before the transition bridge, and all 7 elements appear in order; deduct if the pitch appears early or an element is missing/out of order.\n5. PERSONA-CHALLENGE SPECIFICITY — 5 if the email names a concrete, plausible business challenge for this specific persona rather than a generic pain point or a feature description; deduct for vagueness or feature-first framing.\n6. SOFT CTA & NATURALNESS — 5 if the CTA is a single, low-pressure interest question with no specific time/calendar link, AND the prose reads like a human wrote it (varied sentence rhythm, no slop vocabulary); deduct for hard asks, multiple CTAs, or robotic phrasing.\n</rubric>\n\n<verdict_logic>\nState an overall verdict field for the Orchestrator's convenience, though the Orchestrator applies its own pass/fail logic independently: \"strong\" if grounding=5 and all others >=4; \"needs_revision\" otherwise.\n</verdict_logic>\n\n<anti_sycophancy>\nDo not soften scores because the writing is fluent or confident-sounding — fluency is not evidence of grounding or compliance. Do not assume good faith on unclear facts; if you cannot verify a claim against the Brief in under 10 seconds of checking, score grounding as failing rather than assuming it's fine. Judge only the six dimensions above — do not reward or penalize based on anything outside this rubric (e.g., personal taste on writing style).\n</anti_sycophancy>\n\n<output_schema>\nReturn ONLY this JSON, nothing else:\n{\n  \"scores\": {\n    \"grounding\": { \"score\": 1-5, \"evidence\": \"string\" },\n    \"subject_line\": { \"score\": 1-5, \"evidence\": \"string\" },\n    \"opener_compliance\": { \"score\": 1-5, \"evidence\": \"string\" },\n    \"structure\": { \"score\": 1-5, \"evidence\": \"string\" },\n    \"persona_specificity\": { \"score\": 1-5, \"evidence\": \"string\" },\n    \"soft_cta_naturalness\": { \"score\": 1-5, \"evidence\": \"string\" }\n  },\n  \"overall_verdict\": \"strong|needs_revision\",\n  \"feedback\": \"2-4 concise, actionable sentences the Writer can act on directly — name the specific dimension(s) that failed and what to change. Do not restate scores; give instructions.\"\n}\n</output_schema>"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agentTool",
+      "typeVersion": 3,
+      "position": [
+        1072,
+        640
+      ],
+      "id": "a42c0e23-dd1f-416f-baf1-898d241b8d5f",
+      "name": "Critic Agent (The Judge)"
+    },
+    {
+      "parameters": {
+        "toolDescription": "Drafts one complete SMYKM-style cold email (subject + body) for a single lead, using only the Personalization Brief and sender company data it is given. Call once per round: on round 1 pass the Brief and companydata; on a revision round also pass previous_draft and critic_feedback so every flagged dimension gets addressed without discarding what already worked. Returns JSON: {subject, body, personalization_tier, facts_used}.",
+        "text": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Prompt__User_Message_', ``, 'string') }}",
+        "options": {
+          "systemMessage": "=<role>\nYou are a senior B2B sales strategist known for cold emails that make recipients think \"how did they know that?\" — never \"this was clearly written by AI.\" You write strictly according to the Show Me You Know Me® (SMYKM) philosophy: quality over scale, research before rapport, rapport before pitch. You do not send emails, judge emails, or do research — you write, using only what you're given.\n</role>\n\n<inputs>\n- Personalization Brief (JSON): primary_angle, supporting_hooks, persona_challenge_hint, company_context\n- Sender company data: {{ $json.companydata }} — contains: sender_company_name, icp_description, target_persona, offering_1line, value_prop, common_objections (array)\n- On revision rounds only: previous_draft and critic_feedback (structured, per-dimension) — you must address every flagged dimension specifically without discarding what already scored well\n</inputs>\n\n<grounding_constraint>\nYou may ONLY reference personal facts that appear in the Personalization Brief, with their exact source_url intact for your own verification. If primary_angle.tier = \"company_fallback\", you do not have a personal hook — write the strongest possible company/role-level angle instead, and do not invent a personal detail to compensate. Fabricating or embellishing a personal fact is an automatic, non-negotiable failure. When in doubt, use less detail rather than an unverified detail.\n</grounding_constraint>\n\n<the_7_elements>\nStructure every email in this exact order:\n1. SUBJECT LINE — Combine 2-3 hyper-specific personal facts from the Brief (or the sender's company name + one fact) into something that would make sense to NO ONE except this recipient. BANNED from the subject: the recipient's job title, company name, or industry.\n2. PERSONALIZATION OPENER — Open directly with the hook itself. No greeting throat-clearing.\n3. TRANSITION BRIDGE — One casual sentence connecting the personal hook to the real reason for writing (e.g., \"The real reason I'm reaching out, though...\").\n4. PERSONA-SPECIFIC CHALLENGE — Name a concrete business challenge this persona/role plausibly faces (using persona_challenge_hint and companydata.target_persona) — describe the PROBLEM, not your product.\n5. VALUE PROPOSITION — One sentence on what's at stake if the challenge goes unaddressed (loss-framing is more persuasive than gain-framing). Do not describe product features.\n6. OBJECTION PRE-HANDLING — Preemptively and briefly acknowledge the most likely objection from companydata.common_objections, framed collaboratively, not defensively.\n7. SOFT CTA — A single, low-pressure, interest-based question (e.g., \"Worth a conversation?\" / \"Open to comparing notes?\"). NEVER propose a specific day/time and NEVER include a scheduling/calendar link in this email.\n</the_7_elements>\n\n<banned_language>\nNever use these opener/filler phrases, in any form: \"I hope this finds you well,\" \"hope this email finds you,\" \"I noticed you work at,\" \"as a [role] at [company],\" \"I came across your profile,\" \"quick question,\" \"Rumor has it.\"\nNever use these AI-tell constructions: the em dash character (—) anywhere in the email — use a comma or period instead; sentence openers \"Furthermore,\" \"Moreover,\" \"Additionally,\" \"It's important to note\"; contrastive templates like \"It isn't just X, it's Y\" or \"X isn't just about Y, it's about Z\"; false-intimacy openers like \"Here's the thing\" or \"Let's be honest.\"\nNever use slop vocabulary: delve, realm, tapestry, leverage (as a verb), harness (as a verb), seamlessly, navigate the complexities, groundbreaking, transformative, meticulous, game-changing.\nNever pitch, mention the offering, or name the product/service before element 3 (the transition bridge) is complete.\n</banned_language>\n\n<style_and_length>\n- Target length: 50-90 words total (aim for ~75). Do not pad to sound thorough — every extra sentence lowers reply rate.\n- 3-5 sentences, plain language, roughly a 6th-8th grade reading level.\n- Vary sentence length and opening words — do not let every sentence start the same way or run the same length; this is one of the biggest human-vs-AI tells.\n- Tone: warm, direct, conversational, first-person, lightly informal — like a smart colleague, not a brochure.\n- Sign-off: something simple and human (\"Thanks,\" \"Cheers,\") — avoid \"Best,\" (can read as flat) and \"Sincerely,\" (too formal for this context).\n</style_and_length>\n\n<worked_pattern_example>\nThis illustrates STRUCTURE ONLY — do not copy this content, only the shape:\n\nSubject: [specific_personal_fact_1] + [specific_personal_fact_2] + [sender_company_name]\n\nHi [first_name],\n\n[One sentence building on the personal hook itself, in your own words — not a template restatement].\nThe real reason I'm writing, though — I imagine [persona_challenge_hint] is something you deal with more than you'd like.\n[One sentence on what's at stake if that goes unaddressed, loss-framed].\nYou may already have [likely existing solution/approach implied by common_objections], but [brief non-defensive distinction].\nWorth a quick conversation?\n\nThanks,\n[sender_name]\n</worked_pattern_example>\n\n<output_schema>\nReturn ONLY this JSON, nothing else:\n{\n  \"subject\": \"string\",\n  \"body\": \"string, with \\n for line breaks\",\n  \"personalization_tier\": \"personal|company_fallback\",\n  \"facts_used\": [{\"claim\": \"string\", \"source_url\": \"string\"}]\n}\nfacts_used must list every personal or company fact referenced in the email with its exact source_url from the Brief — this is what the Critic checks for grounding.\n</output_schema>\n\n<revision_mode>\nIf previous_draft and critic_feedback are present: treat critic_feedback as a specific to-do list. Address every dimension that scored below 4 directly. Do not weaken or rewrite elements that already scored well. If your revision would make a previously-strong element worse, keep the original wording for that element.\n</revision_mode>"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agentTool",
+      "typeVersion": 3,
+      "position": [
+        768,
+        640
+      ],
+      "id": "45c2525c-4938-426e-91c4-c263477087d4",
+      "name": "Generator Agent (The Writer)"
+    },
+    {
+      "parameters": {
+        "toolDescription": "Runs a Google-grounded web search (via Gemini) to find recent, verifiable facts about a specific person or company: LinkedIn posts, personal blog/newsletter articles, podcast or conference appearances, interviews. Call with two string inputs: userPrompt (the actual search query, kept surgical — e.g. '[First Last] [Org] podcast') and systemInstruction (brief guidance on how to filter/interpret results). Returns the grounded model response as text, which may include source citations.",
+        "method": "POST",
+        "url": "https://aiplatform.googleapis.com/v1/publishers/google/models/gemini-3.5-flash:generateContent",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpQueryAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"systemInstruction\": {\n        \"parts\": [\n            {\n                \"text\": \"{{ $fromAI('systemInstruction', '', 'string') }}\"\n            }\n        ]\n    },\n    \"contents\": [\n        {\n            \"role\": \"user\",\n            \"parts\": [\n                {\n                    \"text\": \"{{ $fromAI('userPrompt', '', 'string') }}\"\n                }\n            ]\n        }\n    ],\n    \"generationConfig\": {\n        \"temperature\": 1,\n        \"maxOutputTokens\": 10000,\n        \"topP\": 0.95\n    },\n    \"safetySettings\": [\n        {\"category\": \"HARM_CATEGORY_HATE_SPEECH\", \"threshold\": \"OFF\"},\n        {\"category\": \"HARM_CATEGORY_DANGEROUS_CONTENT\", \"threshold\": \"OFF\"},\n        {\"category\": \"HARM_CATEGORY_SEXUALLY_EXPLICIT\", \"threshold\": \"OFF\"},\n        {\"category\": \"HARM_CATEGORY_HARASSMENT\", \"threshold\": \"OFF\"}\n    ],\n    \"tools\": [\n        {\n            \"googleSearch\": {}\n        }\n    ]\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequestTool",
+      "typeVersion": 4.4,
+      "position": [
+        -704,
+        592
+      ],
+      "id": "0f8fe706-c0f7-4cd4-aadf-17a17233e0a5",
+      "name": "Web Search"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/mcp-registry.apify",
+      "typeVersion": 1,
+      "position": [
+        -848,
+        592
+      ],
+      "id": "50a434cb-0b01-4eaa-a832-7d9aa9f05002",
+      "name": "Apify MCP"
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $json.linkedin_url }}researchagent"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryPostgresChat",
+      "typeVersion": 1.4,
+      "position": [
+        -976,
+        592
+      ],
+      "id": "6f35ccb8-359d-4e93-a0a4-e1cce984b090",
+      "name": "Postgres Chat Memory"
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $json.linkedin_url }}main"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryPostgresChat",
+      "typeVersion": 1.4,
+      "position": [
+        448,
+        656
+      ],
+      "id": "64b228bf-fcc9-4188-8a3b-a039ec727daf",
+      "name": "Postgres Chat Memory1"
+    },
+    {
+      "parameters": {
+        "model": "qwen3.7-max-2026-06-08",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatAlibabaCloud",
+      "typeVersion": 1,
+      "position": [
+        -1120,
+        592
+      ],
+      "id": "3c192df6-4fa6-4ee8-bc57-cd5fc5fd4e5b",
+      "name": "Qwen Cloud Chat Model"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "deepseek-ai/deepseek-v4-pro",
+          "mode": "list",
+          "cachedResultName": "deepseek-ai/deepseek-v4-pro"
+        },
+        "responsesApiEnabled": false,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        -128,
+        576
+      ],
+      "id": "dc072b96-7530-49c9-9454-a88738700bdf",
+      "name": "OpenAI Chat Model"
+    },
+    {
+      "parameters": {
+        "model": "mistral-medium-3.5",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatMistralCloud",
+      "typeVersion": 1,
+      "position": [
+        304,
+        656
+      ],
+      "id": "600c789c-a1eb-4246-8e5d-0aa90afcfbbe",
+      "name": "Mistral Cloud Chat Model"
+    },
+    {
+      "parameters": {
+        "model": "global.anthropic.claude-sonnet-4-6",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatAwsBedrock",
+      "typeVersion": 1.1,
+      "position": [
+        672,
+        960
+      ],
+      "id": "e250a22c-24cd-4e66-a555-c6032de514aa",
+      "name": "AWS Bedrock Chat Model"
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $json.linkedin_url }}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryPostgresChat",
+      "typeVersion": 1.4,
+      "position": [
+        816,
+        848
+      ],
+      "id": "91199f9d-346d-4a20-81e4-b61a7a66e521",
+      "name": "Postgres Chat Memory2"
+    },
+    {
+      "parameters": {
+        "projectId": {
+          "__rl": true,
+          "value": "your-gcp-project-id",
+          "mode": "list",
+          "cachedResultName": "your-gcp-project-id"
+        },
+        "modelName": "gemini-3.5-flash",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleVertex",
+      "typeVersion": 1,
+      "position": [
+        992,
+        1024
+      ],
+      "id": "bd850855-4786-4848-82d8-4eb5ca251e18",
+      "name": "Google Vertex Chat Model"
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $json.linkedin_url }}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryPostgresChat",
+      "typeVersion": 1.4,
+      "position": [
+        1120,
+        976
+      ],
+      "id": "3f7ec1ff-f3a6-4a7f-b4e3-91681a91f135",
+      "name": "Postgres Chat Memory3"
+    },
+    {
+      "parameters": {
+        "endpointUrl": "https://mcp.airtable.com/mcp",
+        "authentication": "bearerAuth",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.mcpClientTool",
+      "typeVersion": 1.3,
+      "position": [
+        -576,
+        592
+      ],
+      "id": "bbf3f3f9-a90f-45c7-9dc6-feabe8d2bf75",
+      "name": "Airtable MCP"
+    },
+    {
+      "parameters": {
+        "endpointUrl": "https://mcp.airtable.com/mcp",
+        "authentication": "bearerAuth",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.mcpClientTool",
+      "typeVersion": 1.3,
+      "position": [
+        592,
+        656
+      ],
+      "id": "ebf920c2-b8b1-4924-8884-da035a1781b6",
+      "name": "Airtable MCP1"
+    },
+    {
+      "parameters": {
+        "operation": "search",
+        "base": {
+          "__rl": true,
+          "mode": "id",
+          "value": "appYOUR_BASE_ID"
+        },
+        "table": {
+          "__rl": true,
+          "mode": "id",
+          "value": "tblYOUR_LEADS_TABLE_ID"
+        },
+        "filterByFormula": "OR({pipeline_status}='ready_to_send',{pipeline_status}='sent',{pipeline_status}='needs_manual_review')",
+        "options": {
+          "fields": [
+            "lead_id"
+          ]
+        }
+      },
+      "id": "a22e1cec-9fdb-4f8e-9664-2242200f20ef",
+      "name": "Airtable - Get Completed Leads",
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.2,
+      "position": [
+        208,
+        -16
+      ]
+    },
+    {
+      "parameters": {
+        "mergeByFields": {
+          "values": [
+            {
+              "field1": "linkedin_url",
+              "field2": "lead_id"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "cce66d1f-5313-45a6-b96c-6c1714afaace",
+      "name": "Compare Datasets - Skip Completed",
+      "type": "n8n-nodes-base.compareDatasets",
+      "typeVersion": 2.3,
+      "position": [
+        544,
+        -128
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "={{ {\n  companydata: {\n    sender_company_name: $('On form submission').first().json.sender_company_name,\n    icp_description: $('On form submission').first().json.icp_description,\n    target_persona: $('On form submission').first().json.target_persona,\n    offering_1line: $('On form submission').first().json.offering_1line,\n    value_prop: $('On form submission').first().json.value_prop,\n    common_objections: ($('On form submission').first().json.common_objections || '').split(',').map(s => s.trim()).filter(s => s.length > 0)\n  },\n  run_id: $execution.id\n} }}",
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "id": "13074dd4-cb69-412a-8d98-a6bb9805589e",
+      "name": "Set - Attach Company Data",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -464,
+        -96
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "={{ {\n  companydata: $('Set - Attach Company Data').first().json.companydata,\n  run_id: $('Set - Attach Company Data').first().json.run_id,\n  linkedin_url: $('Set - Attach Company Data').all()[$runIndex].json.linkedin_url\n} }}",
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "id": "fd3ea4ec-d6a9-4955-a4ac-38318fd5cef0",
+      "name": "Set - Prep Synthesis Input",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -528,
+        304
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "={{ {\n  companydata: $('Set - Attach Company Data').first().json.companydata,\n  run_id: $('Set - Attach Company Data').first().json.run_id,\n  linkedin_url: $('Set - Attach Company Data').all()[$runIndex].json.linkedin_url\n} }}",
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "id": "c6579f59-044c-4ab3-90de-dce646077927",
+      "name": "Set - Prep SMYKM Input",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        112,
+        304
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "search",
+        "base": {
+          "__rl": true,
+          "mode": "id",
+          "value": "appYOUR_BASE_ID"
+        },
+        "table": {
+          "__rl": true,
+          "mode": "id",
+          "value": "tblYOUR_LEADS_TABLE_ID"
+        },
+        "filterByFormula": "={{ `{lead_id}='${$json.lead_id}'` }}",
+        "options": {}
+      },
+      "id": "3e12688f-7bd8-4e07-ab24-ad7854125dd4",
+      "name": "Airtable - Get Finalized Email",
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.2,
+      "position": [
+        1008,
+        304
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "={{ {\n  ready_to_send: $json.pipeline_status === 'ready_to_send',\n  pipeline_status: $json.pipeline_status,\n  subject: $json.final_subject || null,\n  body: $json.final_body || null,\n  personalization_tier: $json.personalization_tier || null,\n  research_gaps: $json.research_gaps || null,\n  lead_id: $json.lead_id,\n  run_id: $json.run_id,\n  critic_scores: $json.critic_score_json ? JSON.parse($json.critic_score_json) : null,\n  review_notes: $json.error_log || null\n} }}",
+        "options": {}
+      },
+      "id": "fb53f3cc-f023-4822-8905-e75a07622534",
+      "name": "Format for Sending",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1552,
+        304
+      ]
+    },
+    {
+      "parameters": {
+        "content": "### Sending is intentionally NOT wired up yet\n\nThe **Format for Sending** node gives you clean, ready-to-use fields:\n`subject`, `body`, `ready_to_send`, `pipeline_status`, `lead_id`, `run_id`, `critic_scores`, `review_notes`.\n\nOnly items where `ready_to_send = true` should actually go out — anything `needs_manual_review` should be checked by a human first (see `review_notes`).\n\nTo actually send: add any email-sending node here (SMTP, SendGrid, Mailgun, Hunter.io, Gmail, etc.) and map its To/Subject/Body fields to this node's `subject` / `body` output. We deliberately left the provider choice open — this is a placeholder for a future iteration, not a limitation of the pipeline.",
+        "height": 376,
+        "width": 716,
+        "color": 5
+      },
+      "id": "a0bc1383-1e39-4b58-a187-85bff0b20e12",
+      "name": "Note - Sending Not Wired Yet",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1744,
+        176
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "base": {
+          "__rl": true,
+          "mode": "id",
+          "value": "appYOUR_BASE_ID"
+        },
+        "table": {
+          "__rl": true,
+          "mode": "id",
+          "value": "tblYOUR_LEAD_PROFILES_TABLE_ID"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "email": "={{ $json.email }}",
+            "first_name": "={{ $json.first_name }}",
+            "headline": "={{ $json.headline }}",
+            "last_name": "={{ $json.last_name }}",
+            "lead_id": "={{ $json.linkedin_url }}",
+            "linkedin_url": "={{ $json.linkedin_url }}",
+            "organization_founded_year": "={{ $json.organization_founded_year }}",
+            "organization_linkedin_url": "={{ $json.organization_linkedin_url }}",
+            "organization_name": "={{ $json.organization_name }}",
+            "organization_primary_domain": "={{ $json.organization_primary_domain }}",
+            "run_id": "={{ $json.run_id }}",
+            "sanitized_address": "={{ $json.sanitized_address }}",
+            "sourced_at": "={{ $now.toISO() }}",
+            "title": "={{ $json.title }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "lead_id",
+              "displayName": "lead_id",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "first_name",
+              "displayName": "first_name",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "last_name",
+              "displayName": "last_name",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "email",
+              "displayName": "email",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "linkedin_url",
+              "displayName": "linkedin_url",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "headline",
+              "displayName": "headline",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "title",
+              "displayName": "title",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "sanitized_address",
+              "displayName": "sanitized_address",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "organization_name",
+              "displayName": "organization_name",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "organization_primary_domain",
+              "displayName": "organization_primary_domain",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "organization_linkedin_url",
+              "displayName": "organization_linkedin_url",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "organization_founded_year",
+              "displayName": "organization_founded_year",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "run_id",
+              "displayName": "run_id",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "sourced_at",
+              "displayName": "sourced_at",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "dateTime",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {
+          "typecast": true
+        }
+      },
+      "id": "e929aee4-4b29-4eef-86e4-5d405172fafd",
+      "name": "Airtable - Save Lead Profile",
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.2,
+      "position": [
+        -80,
+        -272
+      ]
+    }
+  ]
+}
